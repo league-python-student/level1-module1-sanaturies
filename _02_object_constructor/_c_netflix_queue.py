@@ -1,3 +1,4 @@
+
 class Movie:
     def __init__(self, title, stars):
         self.title = title
@@ -16,7 +17,7 @@ class Movie:
 
 
 class NetflixQueue:
-    def __init__(self):
+    def __init__(self,movies):
         self.movies = list()
 
     def get_best_movie(self):
@@ -40,7 +41,6 @@ class NetflixQueue:
 
 
 if __name__ == '__main__':
-    pass
     # Use Movie and NetflixQueue classes above to complete the following changes:
 
     # TODO 1) Instantiate (create) at least 5 Movie objects.
@@ -50,4 +50,26 @@ if __name__ == '__main__':
     # TODO 5) Print all the movies in your queue.
     # TODO 6) Use your NetflixQueue object to finish the sentence "the best movie is...."
     # TODO 7) Use your NetflixQueue to finish the sentence "the second best movie is...."
+
+    dic={'parasite':4,
+    'demon slayer':4.5,
+    'joker':4.05,
+    'mean girls':3,
+    'clueless':3,
+    'twilight':-2000}
+    lst=[]
+    lst1=[]
+    for i in dic:
+        lst.append(Movie(i,dic[i]))
+        lst1.append(NetflixQueue.add_movie(NetflixQueue(i)))
+        Movie.get_ticket_price(Movie(i,dic[i]))
+    print(lst1)
+    NetflixQueue.sort_movies_by_rating(NetflixQueue(lst1))
+    print('the best movie is', lst[0])
+    print('the second best movie is',lst1[1])
+
+
+    
+
+
 
