@@ -1,12 +1,16 @@
 
 class Movie:
-    def __init__(self, title, stars):
+    def __init__(self, title, stars,length):
         self.title = title
         self.stars = stars
+        self.lenght=length
 
     def to_string(self):
         return "\"" + self.title + "\" - " + str(self.stars) + " stars"
 
+    def get_stars(self):
+        return self.stars
+    
     def get_ticket_price(self):
         if self.stars > 2:
             return "That will be $12 please."
@@ -31,7 +35,10 @@ class NetflixQueue:
         return self.movies[movie_number]
 
     def sort_movies_by_rating(self):
-        self.movies.sort(key=lambda movie: movie.stars, reverse=True)
+       self.movies.sort(key=lambda movie: movie.get_stars(), reverse=True)
+
+    def get_movies_by_rating(self):
+        return self.movies
 
     def print_movies(self):
         print("Your Netflix queue contains: ")
@@ -51,22 +58,27 @@ if __name__ == '__main__':
     # TODO 6) Use your NetflixQueue object to finish the sentence "the best movie is...."
     # TODO 7) Use your NetflixQueue to finish the sentence "the second best movie is...."
 
-    dic={'parasite':4,
-    'demon slayer':4.5,
-    'joker':4.05,
-    'mean girls':3,
-    'clueless':3,
-    'twilight':-2000}
+    dic={'parasite':[4,132],
+    'demon slayer':[4.5,117],
+    'joker':[4.05,122],
+    'mean girls':[3,97],
+    'clueless':[3,97],
+    'twilight':[2,122]}
     lst=[]
-    lst1=[]
+    mylst=[]
+    best=[]
+    mynetflix=NetflixQueue(lst)
     for i in dic:
-        lst.append(Movie(i,dic[i]))
-        lst1.append(NetflixQueue.add_movie(NetflixQueue(i)))
-        Movie.get_ticket_price(Movie(i,dic[i]))
-    print(lst1)
-    NetflixQueue.sort_movies_by_rating(NetflixQueue(lst1))
-    print('the best movie is', lst[0])
-    print('the second best movie is',lst1[1])
+        movie=Movie(i,dic[i[0],dic[i[1]]])
+        mynetflix.add_movie(movie)
+        lst.append(movie)
+    print(lst[-1].get_ticket_price())
+    mynetflix.print_movies()
+    mynetflix.sort_movies_by_rating()
+    best=mynetflix.get_movies_by_rating()
+
+    print('the best movie is',mynetflix.get_best_movie().to_string())
+    print('the second best movie is',best[1].to_string())
 
 
     
